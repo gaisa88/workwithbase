@@ -19,6 +19,8 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
       <th>Action</th>
     </tr>
     </thead>
@@ -26,9 +28,9 @@
     <tr th:each="client:${clientlist}">
       <td th:text="${client.name}"></td>
       <td th:text="${client.email}"></td>
-      <td> <a th:href="@{/showFormForUpdate/{id}(id=${client.id})}"
-              class="btn btn-primary">Update</a>
-      </td>
+      <td th:text="${client.phone}"></td>
+      <td th:text="${client.address}"></td>
+      <td> <a th:href="@{/showFormForUpdate/{id}(id=${client.id})}" class="btn btn-primary">Update</a> </td>
     </tr>
     </tbody>
   </table>

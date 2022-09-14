@@ -2,13 +2,14 @@ package com.workwithbase.controller;
 
 import com.workwithbase.model.Address;
 import com.workwithbase.model.Client;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.workwithbase.service.ClientService;
 
 import java.util.List;
 import java.util.Optional;
-@RestController
+@Controller
 public class ClientController {
     private final ClientService clientsService;
 
@@ -50,8 +51,8 @@ public class ClientController {
     }
 
     @PostMapping("/save")
-    public String saveClient(@ModelAttribute("client") Client client) {
-        clientsService.saveClient(client);
+    public String saveClient(@ModelAttribute("client") Client newClient) {
+        clientsService.saveClient(newClient);
         return "redirect:/";
     }
 
