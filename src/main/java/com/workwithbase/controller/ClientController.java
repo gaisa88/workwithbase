@@ -36,11 +36,30 @@ public class ClientController {
         return clientsService.findAddressById(id); // возвращаем сущность полученную сервисом через id
     }
 
+    @GetMapping("/")
+    public String viewHomePage(Model model) {
+        model.addAttribute("clientlist", clientsService.readAllClient());
+        return "index";
+    }
+
     @GetMapping("/addnew")
-    public String addNewEmployee(Model model) {
-        Client employee = new Client();
-        model.addAttribute("employee", employee);
-        return "newemployee";
+    public String addNewClient(Model model) {
+        Client client = new Client();
+        model.addAttribute("client", client);
+        return "newclient";
+    }
+
+    @PostMapping("/save")
+    public String saveClient(@ModelAttribute("client") Client client) {
+        clientsService.saveClient(client);
+        return "redirect:/";
+    }
+
+    @GetMapping("/showFormForUpdate/{id}")
+    public String updateForm(@PathVariable(value = "id") long id, Model model) {
+        Client client = clientsService.findClientById(id).get();
+        model.addAttribute("client", client);
+        return "update";
     }
 
     @PostMapping("/clients") // объявлем запрос добавление данных
