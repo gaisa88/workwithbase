@@ -33,7 +33,7 @@ public class ClientService {
         return address;
     }
 
-    public void deleteById(Long id){
+    public void deleteClientId(Long id){
         clientRepository.deleteById(id);
     }
 

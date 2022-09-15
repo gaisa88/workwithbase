@@ -29,7 +29,12 @@ public class ClientController {
         model.addAttribute("client", client);
         return "newclient";
     }
-
+    @GetMapping("/addrequest")
+    public String myRequest(Model model) {
+        Client client = new Client();
+        model.addAttribute("client", client);
+        return "myrequest";
+    }
     @PostMapping("/save")
     public String saveClient(@ModelAttribute("client") Client newClient) {
         clientsService.saveClient(newClient);
@@ -43,9 +48,9 @@ public class ClientController {
         return "update";
     }
 
-    @DeleteMapping("/deleteClient/{id}")
+    @GetMapping("/deleteClient/{id}")
     public String deleteClient(@PathVariable(value="id") long id){
-        clientsService.deleteById(id);
+        clientsService.deleteClientId(id);
         return "redirect:/";
     }
 
