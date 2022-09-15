@@ -17,26 +17,6 @@ public class ClientController {
         this.clientsService = clientsService;
     }
 
-
-    @RequestMapping("/clients") // объявляем rest запрос для получения списка сущностей
-    public Iterable<Client> getClients() { // получаем иттерированный список
-        List<Client> clientList = clientsService.readAllClient(); // объявлем переменную лист объектов, которые получаем сервиса прочитав данные из таблицы
-        return clientList; // возвращаем лист сущностей
-    }
-    @RequestMapping("/address") // объявляем rest запрос для получения списка сущностей
-    public Iterable<Address> getAddress() { // получаем иттерированный список
-        List<Address> addressList = clientsService.readAllAddress(); // объявлем переменную лист объектов, которые получаем сервиса прочитав данные из таблицы
-        return addressList; // возвращаем лист сущностей
-    }
-    @GetMapping("/clients/{id}") // объявлем запрос get для получения данных
-    Optional<Client> one(@PathVariable Long id) { // получаем опциональную сущность, по id
-        return clientsService.findClientById(id); // возвращаем сущность полученную сервисом через id
-    }
-    @GetMapping("/address/{id}") // объявлем запрос get для получения данных
-    Optional<Address> two(@PathVariable Long id) { // получаем опциональную сущность, по id
-        return clientsService.findAddressById(id); // возвращаем сущность полученную сервисом через id
-    }
-
     @GetMapping("/")
     public String viewHomePage(Model model) {
         model.addAttribute("clientlist", clientsService.readAllClient());
@@ -61,6 +41,34 @@ public class ClientController {
         Client client = clientsService.findClientById(id).get();
         model.addAttribute("client", client);
         return "update";
+    }
+
+    @DeleteMapping("/deleteClient/{id}")
+    public String deleteClient(@PathVariable(value="id") long id){
+        clientsService.deleteById(id);
+        return "redirect:/";
+    }
+
+
+
+
+    @RequestMapping("/clients") // объявляем rest запрос для получения списка сущностей
+    public Iterable<Client> getClients() { // получаем иттерированный список
+        List<Client> clientList = clientsService.readAllClient(); // объявлем переменную лист объектов, которые получаем сервиса прочитав данные из таблицы
+        return clientList; // возвращаем лист сущностей
+    }
+    @RequestMapping("/address") // объявляем rest запрос для получения списка сущностей
+    public Iterable<Address> getAddress() { // получаем иттерированный список
+        List<Address> addressList = clientsService.readAllAddress(); // объявлем переменную лист объектов, которые получаем сервиса прочитав данные из таблицы
+        return addressList; // возвращаем лист сущностей
+    }
+    @GetMapping("/clients/{id}") // объявлем запрос get для получения данных
+    Optional<Client> one(@PathVariable Long id) { // получаем опциональную сущность, по id
+        return clientsService.findClientById(id); // возвращаем сущность полученную сервисом через id
+    }
+    @GetMapping("/address/{id}") // объявлем запрос get для получения данных
+    Optional<Address> two(@PathVariable Long id) { // получаем опциональную сущность, по id
+        return clientsService.findAddressById(id); // возвращаем сущность полученную сервисом через id
     }
 
     @PostMapping("/clients") // объявлем запрос добавление данных

@@ -33,6 +33,10 @@ public class ClientService {
         return address;
     }
 
+    public void deleteById(Long id){
+        clientRepository.deleteById(id);
+    }
+
     public List<Address> readAllAddress() {
         return addressReposiroty.findAll();
     } // метод для чтения и поиска объекта в таблице
@@ -40,4 +44,6 @@ public class ClientService {
     public Optional<Address> findAddressById(Long id) { // опционально возвращаем объект, для возможности работы с ним
         return addressReposiroty.findById(id);
     }
+
+
 }
