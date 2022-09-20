@@ -9,12 +9,25 @@
         crossorigin="anonymous">
 </head>
 <body>
-<div class="container my-2" align="center">
 
-  <h3>Client List</h3>
+
+<div class="container my-1" align="left">
+  <hr>
+  <h2>Make Request</h2>
+  <form action="#" th:action="@{/search}" method="get">
+  <input type="text" name="phone" placeholder="Client Phone" class="form-control mb-4 col-4">  <button type="submit" class="btn btn-info col-2">Search Client</button>
+
+
+  <h2>Add Client</h2>
+
   <a th:href="@{/addnew}" class="btn btn-primary btn-sm mb-3" >Add Client</a>
-  <a th:href="@{/addrequest}" class="btn btn-primary btn-sm mb-3" >Add Request</a>
+</form>
 
+  <hr>
+  </div>
+
+<div class="container my-2" align="center">
+  <h2>Client List</h2>
   <table style="width:80%" border="1"
          class = "table table-striped table-responsive-md">
     <thead>
