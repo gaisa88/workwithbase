@@ -35,6 +35,19 @@ public class ClientController {
         model.addAttribute("client", client);
         return "myrequest";
     }
+
+    /*@GetMapping("/search")
+    public String indexWithQuery(@RequestParam("query") String query, Model model) {
+        model.addAttribute("phone", clientsService.findAllByName(query));
+        return "index";
+    }*/
+    @GetMapping("/search1/{id}")
+    public String indexWithQuery(@PathVariable(value = "id") long id, Model model) {
+        model.addAttribute("client", clientsService.findClientById(id));
+        return "index";
+    }
+
+
     @PostMapping("/save")
     public String saveClient(@ModelAttribute("client") Client newClient) {
         clientsService.saveClient(newClient);

@@ -15,11 +15,11 @@
   <hr>
   <h2>Make Request</h2>
 
-  <form action="#" th:action="@{/save}" th:object="${client}" method="POST">
+  <form action="#" th:action="@{/search1}" th:object="${client}" method="get">
 
-    <input type="text" th:field="*{name}" placeholder="Client Name" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{id}" placeholder="Client Phone" class="form-control mb-4 col-4">
 
-    <button type="submit" class="btn btn-info col-2">Save Client</button>
+    <button type="submit" class="btn btn-info col-2">Search Client</button>
   </form>
 
   <hr>

@@ -44,6 +44,8 @@ public class ClientService {
     public Optional<Address> findAddressById(Long id) { // опционально возвращаем объект, для возможности работы с ним
         return addressReposiroty.findById(id);
     }
-
+    public List<Client> findAllByName(long id) {
+        return clientRepository.findAllByName(id);
+    }
 
 }
