@@ -24,7 +24,9 @@ public class ClientService {
     public List<Client> readAllClient() {
         return clientRepository.findAll();
     } // метод для чтения и поиска объекта в таблице
-
+    public List<Client> findAllByName(String phone) {
+        return clientRepository.findAllByName(phone);
+    }
     public Optional<Client> findClientById(Long id) { // опционально возвращаем объект, для возможности работы с ним
         return clientRepository.findById(id);
     }
@@ -43,9 +45,6 @@ public class ClientService {
 
     public Optional<Address> findAddressById(Long id) { // опционально возвращаем объект, для возможности работы с ним
         return addressReposiroty.findById(id);
-    }
-    public List<Client> findAllByName(long id) {
-        return clientRepository.findAllByName(id);
     }
 
 }

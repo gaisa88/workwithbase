@@ -31,21 +31,19 @@ public class ClientController {
     }
     @GetMapping("/addrequest")
     public String myRequest(Model model) {
-        Client client = new Client();
-        model.addAttribute("client", client);
         return "myrequest";
     }
 
-    /*@GetMapping("/search")
-    public String indexWithQuery(@RequestParam("query") String query, Model model) {
-        model.addAttribute("phone", clientsService.findAllByName(query));
-        return "index";
-    }*/
-    @GetMapping("/search1/{id}")
-    public String indexWithQuery(@PathVariable(value = "id") long id, Model model) {
-        model.addAttribute("client", clientsService.findClientById(id));
+    @GetMapping("/search")
+    public String indexWithQuery(@RequestParam("phone") String phone, Model model) {
+        model.addAttribute("clientlist", clientsService.findAllByName(phone));
         return "index";
     }
+//    @GetMapping("/search1/{id}")
+//    public String indexWithQuery(@PathVariable(value = "id") long id, Model model) {
+//        model.addAttribute("client", clientsService.findClientById(id));
+//        return "index";
+//    }
 
 
     @PostMapping("/save")
